@@ -1,0 +1,20 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Лунный блокнот{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+</head>
+<body>
+    <header>
+        <strong>Лунный блокнот</strong>
+        <nav aria-label="Навигация">
+            <a href="{% url 'blog:home' %}">Главная</a>
+            <a href="{% url 'blog:about' %}">О блоге</a>
+        </nav>
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+</body>
+</html>
