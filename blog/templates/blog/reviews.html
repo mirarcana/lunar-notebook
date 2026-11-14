@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+{% block title %}Книга отзывов{% endblock %}
+{% block content %}
+    <h1>Книга отзывов</h1>
+    {% for review in reviews %}
+        <article>
+            <h2>{{ review.full_name }}</h2>
+            {{ review.text|linebreaks }}
+        </article>
+    {% empty %}
+        <p>Здесь пока нет опубликованных отзывов.</p>
+    {% endfor %}
+    <h2>Оставить отзыв</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="full_name">ФИО</label><br>
+            <input id="full_name" name="full_name" maxlength="150" required>
+        </p>
+        <p>
+            <label for="email">Email</label><br>
+            <input id="email" name="email" type="email" maxlength="254" required>
+        </p>
+        <p>
+            <label for="text">Текст отзыва</label><br>
+            <textarea id="text" name="text" rows="4" cols="30" required></textarea>
+        </p>
+        <button type="submit">Отправить на проверку</button>
+    </form>
+{% endblock %}
